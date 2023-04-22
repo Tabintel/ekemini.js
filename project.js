@@ -154,5 +154,5 @@ const rows = transpose(reels);
 console.log(reels);
 console.log(rows);
 printRows(rows);
-const winnings = getWinnings(rows, bet, lines)
+const winnings = getWinnings(rows, bet, numberOfLines)
 console.log("You won, $" + winnings.toString())
