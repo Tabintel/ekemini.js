@@ -1,3 +1,5 @@
+//  Slot machine: A command line lottery game using JavaScript
+
 // 1. Deposit some money
 // 2. Determine number of lines to bet on
 // 3. Collect a bet amount
@@ -146,13 +148,33 @@ const getWinnings = (rows, bet, lines) => {
     return winnings;
 };
 
-let balance = deposit();
-const numberOfLines = getNumberOfLines();
-const bet = getBet(balance, numberOfLines);
-const reels = spin();
-const rows = transpose(reels);
-console.log(reels);
-console.log(rows);
-printRows(rows);
-const winnings = getWinnings(rows, bet, numberOfLines)
-console.log("You won, $" + winnings.toString())
+const game = () => {
+    let balance = deposit();
+
+    while (true) {
+            console.log("You have a balance of $" + balance);
+        const numberOfLines = getNumberOfLines();
+        const bet = getBet(balance, numberOfLines);
+        balance -= bet * numberOfLines;
+        const reels = spin();
+        const rows = transpose(reels);
+        console.log(reels);
+        console.log(rows);
+        printRows(rows);
+        const winnings = getWinnings(rows, bet, numberOfLines)
+        balance += winnings;
+            console.log("You won, $" + winnings.toString());
+
+        if (balance <= 0) {
+            console.log("You ran out of money!");
+            break;
+        }
+
+        const playAgain = prompt("Do you want to play again (y/n)?");
+
+        if (playAgain != "y") break;
+    }
+};
+
+game();
+

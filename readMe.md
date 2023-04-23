@@ -1,0 +1,1 @@
+Slot machine: A command line lottery game using JavaScript
